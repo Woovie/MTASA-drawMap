@@ -1,0 +1,5 @@
+<meta>
+    <info author="iDannz + yngstr6" version="1" />
+    <script src='config.lua' type='client' cache='false'/>
+    <script src='client.lua' type='client' cache='false'/>
+</meta>
