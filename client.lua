@@ -13,15 +13,15 @@ local imgSize = {
 local texture = dxCreateTexture(imgSize.w, imgSize.h)
 local pixels = dxGetTexturePixels(texture)
 
-local boundX, boundY = 3300, 3500
-local x, y = boundX - radius, boundY
+local boundX, boundY = 3000, 3000
+local x, y = -boundX - progressUpdate, boundY
 
 Update = function()
     local t = 0
     while true do
         if (y <= -boundY) then
             y = boundY
-            x = x - (radius)
+            x = x + (radius)
         end
 
         y = y - progressUpdate
@@ -52,7 +52,7 @@ Update = function()
             dxSetPixelColor(pixels, pX, pY, color[1], color[2], color[3])
         end
 
-        if (x >= boundX) then
+        if (x > boundX) then
             local pngPixels = dxConvertPixels(pixels, 'png')
             local newImg = fileCreate('map.png')
             fileWrite(newImg, pngPixels)
@@ -82,8 +82,7 @@ end, refreshTick, 0)
 
 addEventHandler('onClientRender', root, function()
     if texture then
-        dxDrawRectangle(sW / 2 - imgSize.w / 2, sH / 2 - imgSize.h / 2, imgSize.w, imgSize.h, tocolor(200, 200, 200, 50))
-        dxDrawImage(sW / 2 - imgSize.w / 2, sH / 2 - imgSize.h / 2, imgSize.w, imgSize.h, texture)
+        dxDrawImage(sW / 2 - imgSize.w / 2, sH / 2 - imgSize.h / 2, imgSize.w, imgSize.h, texture, 0, 0, 0, tocolor(200, 200, 200, 255))
     end
 end)
 
